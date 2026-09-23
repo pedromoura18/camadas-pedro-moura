@@ -128,9 +128,9 @@ C) II, apenas.
 D) II e III, apenas.
 E) I, II e III.
 
-**Resposta:**
+**Resposta:*B*
 
-**Justificativa (opcional):**
+**Justificativa (opcional):*O CSV pode reutilizar o Service e os repositórios, mudando apenas a forma de apresentação. A regra de INSS por estado deve ficar no employee.service.ts, que já possui a lógica de cálculo. O app mobile pode consumir as mesmas rotas e dados, sem transformar o Service em responsável pelo JSON.*
 
 ---
 
@@ -152,9 +152,9 @@ C) A asserção I é uma proposição verdadeira, e a II é uma proposição fal
 D) A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.
 E) As asserções I e II são proposições falsas.
 
-**Resposta:**
+**Resposta:*C*
 
-**Justificativa (opcional):**
+**Justificativa (opcional):*A afirmação I é verdadeira porque legacy/app.ts concentra requisição, regras, SQL e HTML na mesma rota. A II é falsa, pois o TypeScript não impede erros de arquitetura ou problemas causados por alterações no código durante a execução.*
 
 ---
 
@@ -170,7 +170,7 @@ c) cite os arquivos do seu projeto que seriam alterados para atendê-lo.
 
 (Até 10 linhas.)
 
-**Resposta:**
+**Resposta:*O pedido que exige mais esforço é aplicar uma alíquota de INSS diferente conforme o estado. A separação em camadas organiza o código, mas a nova regra ainda precisa alterar a lógica de negócio. O employee.service.ts teria que consultar o estado da empresa e escolher a alíquota correspondente. O company.repository.ts já possui findById, que permite obter o estado da empresa. Também seria necessário ajustar o cálculo no Service para usar a nova regra.*
 
 ---
 
@@ -186,4 +186,4 @@ c) descreva como você corrigiu, ou como corrigiria.
 
 (Até 10 linhas.)
 
-**Resposta:**
+**Resposta:*O erro que mais se aproximou do meu código foi o erro tratado em cada rota. No início, a preocupação com os códigos HTTP poderia levar a colocar vários res.status(...) para tratar erros diretamente nos controllers. Corrigi isso usando o error.middleware.ts, que centraliza a tradução dos erros de domínio para os códigos HTTP. Os controllers passaram a usar next(error) e o middleware decide entre 400, 404 e 422*
